@@ -1,0 +1,28 @@
+<% if flash[:notice] %>
+ <div class="flash">
+ 	<%= flash[:notice] %>
+ </div>
+<% end %>
+
+<h1>Editing Book</h1>
+
+<% if @booker.errors.any? %>
+	  <div class="alert alert-danger">
+		  <ul>
+		      <% @booker.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+	      </ul>
+	  </div>
+<% end %>
+
+<%= form_for(@booker) do |f| %>
+			<div class="n-title">Title</div>
+			<%= f.text_field :title %>
+			<div class="n-body">Body</div>
+			<%= f.text_area :body %>
+
+			<%= f.submit 'Update Book' %>
+			<%= link_to "Show", book_path %>
+	  		<%= link_to "Back", books_path %>
+<% end %>
